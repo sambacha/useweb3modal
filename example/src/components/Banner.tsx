@@ -8,7 +8,7 @@ const SBannerWrapper = styled.div`
   align-items: center;
   position: relative;
   & span {
-    color: rgb(${colors.lightBlue});
+    color: rgb(${colors.black});
     font-weight: ${fonts.weight.bold};
     font-size: ${fonts.size.h5};
     margin-left: 12px;
@@ -26,7 +26,7 @@ const SBanner = styled.div`
 const Banner = () => (
   <SBannerWrapper>
     <SBanner />
-    <span>{`Web3Modal`}</span>
+    <span>{`@useWeb3/modal`}</span>
   </SBannerWrapper>
 );
 
