@@ -1,6 +1,6 @@
 import * as React from "react";
 import styled from "styled-components";
-import logo from "../assets/web3modal-logo.png";
+import logo from "../assets/useweb3modal-logo.png";
 import { fonts, colors } from "../styles";
 
 const SBannerWrapper = styled.div`
