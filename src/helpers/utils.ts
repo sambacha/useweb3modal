@@ -8,16 +8,16 @@ import {
   IInjectedProvidersMap,
   ChainData,
   ThemeColors,
-  RequiredOption
+  RequiredOption,
 } from "./types";
 
 export function checkInjectedProviders(): IInjectedProvidersMap {
   const result = {
-    injectedAvailable: !!window.ethereum || !!window.web3
+    injectedAvailable: !!window.ethereum || !!window.web3,
   };
   if (result.injectedAvailable) {
     let fallbackProvider = true;
-    Object.values(injected).forEach(provider => {
+    Object.values(injected).forEach((provider) => {
       const isAvailable = verifyInjectedProvider(provider.check);
       if (isAvailable) {
         result[provider.check] = true;
@@ -54,6 +54,7 @@ export function getInjectedProvider(): IProviderInfo | null {
   const injectedProviders = checkInjectedProviders();
 
   if (injectedProviders.injectedAvailable) {
+    // @ts-ignore
     delete injectedProviders.injectedAvailable;
     const checks = Object.keys(injectedProviders);
     result = getProviderInfoFromChecksArray(checks);
@@ -69,8 +70,8 @@ export function getInjectedProviderName(): string | null {
 export function getProviderInfo(provider: any): IProviderInfo {
   if (!provider) return providers.FALLBACK;
   const checks = Object.values(providers)
-    .filter(x => provider[x.check])
-    .map(x => x.check);
+    .filter((x) => provider[x.check])
+    .map((x) => x.check);
   return getProviderInfoFromChecksArray(checks);
 }
 
@@ -174,7 +175,7 @@ export function filterProviders(
   if (!value) return providers.FALLBACK;
   const match = filterMatches<IProviderInfo>(
     Object.values(providers),
-    x => x[param] === value,
+    (x) => x[param] === value,
     providers.FALLBACK
   );
   return match || providers.FALLBACK;
@@ -199,7 +200,7 @@ export function getChainId(network: string): number {
   const chains: ChainData[] = Object.values(CHAIN_DATA_LIST);
   const match = filterMatches<ChainData>(
     chains,
-    x => x.network === network,
+    (x) => x.network === network,
     undefined
   );
   if (!match) {
@@ -216,7 +217,7 @@ export function findMatchingRequiredOptions(
   requiredOptions: RequiredOption[],
   providedOptions: { [key: string]: any }
 ): RequiredOption[] {
-  const matches = requiredOptions.filter(requiredOption => {
+  const matches = requiredOptions.filter((requiredOption) => {
     if (typeof requiredOption === "string") {
       return requiredOption in providedOptions;
     }

@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Web3 from "web3";
 import { convertUtf8ToHex } from "@walletconnect/utils";
 
-import Web3Modal from "web3modal";
+import Web3Modal from "@useweb3/modal";
 // @ts-ignore
 import WalletConnectProvider from "@walletconnect/web3-provider";
 // @ts-ignore
@@ -236,7 +236,7 @@ class App extends React.Component<any, any> {
       walletconnect: {
         package: WalletConnectProvider,
         options: {
-          infuraId: process.env.REACT_APP_INFURA_ID
+          1: process.env.REACT_APP_RPC_URL
         }
       },
       torus: {
@@ -385,7 +385,7 @@ class App extends React.Component<any, any> {
     }
 
     // test message
-    const message = "My email is john@doe.com - 1537836206101";
+    const message = "@payload['$GITHUB_HEAD_REF']['$GITHUB_RUN_ID']['$GITHUB_SHA']";
 
     // encode message (hex)
     const hexMsg = convertUtf8ToHex(message);
@@ -609,7 +609,7 @@ class App extends React.Component<any, any> {
               </SBalances>
             ) : (
               <SLanding center>
-                <h3>{`Test Web3Modal`}</h3>
+                <h3>{`Select your wallet provider`}</h3>
                 <ConnectButton onClick={this.onConnect} />
               </SLanding>
             )}
